@@ -1,17 +1,36 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>NewsQ Web application by Django</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+
 </head>
 <body>
-    <div>
-        <h1><a href="">Django Test Blog</a></h1>
+    <div class="page-header">
+        <h1><a href="">NewsQ Main Page</a></h1>
     </div>
 
-    <div>
-        <h2><a href="">My 1st Post</a></h2>
-        <p>Test Post writing Start. And It`s my first page</p>
+
+    <div class="content container">
+        <div class="row">
+            <div class="col-md-8">
+                {% for post in posts %}
+                    <div class="post">
+                        <div class="date">
+                            <p>published: {{ post.published_date }}</p>
+                        </div>
+                        <h1><a href="">{{ post.title }}</a></h1>
+                        <p>{{ post.text|linebreaksbr }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
+
+
 </body>
 </html>
